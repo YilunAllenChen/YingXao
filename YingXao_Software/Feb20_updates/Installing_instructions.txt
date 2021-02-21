@@ -1,0 +1,13 @@
+sudo pip3 install requests==1.1.0
+sudo pip3 install python-firebase
+sudo pip3 install requests --upgrade
+(cd to firebase and change the async.py to nasync.py
+and replace async in __init__.py and firebase.py to nasync)
+
+If error "ModuleNotFoundError: No module named 'python_jwt'" appears,
+then run 
+pip install python_jwt
+pip install gcloud
+pip install sseclient
+pip install pycrypto
+pip install requests-toolbelt
