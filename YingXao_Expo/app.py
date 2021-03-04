@@ -17,10 +17,9 @@ def index():
 def team():
     return render_template("team.html")
 
-@app.route("/tech")
+@app.route("/technology")
 def tech():
-    return render_template("tech.html")
-
+    return render_template("technology.html")
 
 
 if __name__ == "__main__":
