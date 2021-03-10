@@ -27,7 +27,7 @@ html,
 body {
   height: 100%;
   /* background-color: #333; */
-  background: url("https://www.crushpixel.com/big-static12/preview4/new-plant-growing-out-soilisolated-1099680.jpg") no-repeat center center fixed;
+  background: url("plant_bg.jfif") no-repeat center center fixed;
   
   -webkit-background-size: cover;
   -moz-background-size: cover;
