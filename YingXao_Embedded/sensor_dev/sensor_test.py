@@ -2,6 +2,7 @@ import time
 import MoistureSensor.Moisture as Moisture
 import DHT22.DHT22 as DHT 
 import SI1145.SI1145 as light_sensor
+import StepMotor.stepper as step
 
 while True:
     try:
@@ -33,6 +34,10 @@ while True:
         print('uv light: {}'.format(uv_light))
         ir_light = light_sensor.get_ir()
         print('ir light: {}'.format(ir_light))
+        delay = 1.0
+        steps = 1000
+        if ir_light > 700.0:
+            step.forward(int(delay) / 1000.0, int(steps))
     except:
         print('Failed to read sunlight information, check SI1145')
     time.sleep(2.0)
