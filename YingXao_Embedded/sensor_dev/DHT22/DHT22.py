@@ -21,7 +21,7 @@ def get_temperature_f():
 
 def get_humidity():
     return dhtDevice.humidity
-'''
+"""
 while True:
     try:
         # Print the values to the serial port
@@ -44,4 +44,4 @@ while True:
         raise error
 
     time.sleep(2.0)
-'''
+"""

@@ -16,6 +16,7 @@ def get_uv():
 def get_ir():
     return round(SI1145.ReadIR, 0)
 
+"""
 def main():
     print("Please use Ctrl C to quit")
     signal.signal(signal.SIGTSTP, handler) # Ctrl-z
@@ -26,3 +27,4 @@ def main():
         time.sleep(0.5)
 if __name__  == '__main__':
     main()
+"""
