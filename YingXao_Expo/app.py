@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 
 
-
 app = Flask(__name__, 
 static_url_path="",
 static_folder="static",
@@ -20,6 +19,11 @@ def team():
 @app.route("/technology")
 def tech():
     return render_template("technology.html")
+
+@app.route("/section/<string:section>")
+def temp(section: str):
+    return render_template(f"subsections/{section}.html")
+
 
 
 if __name__ == "__main__":

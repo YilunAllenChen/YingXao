@@ -61,10 +61,10 @@ body {
 
 .masthead-brand {
   margin-bottom: 0;
+  padding-right: 30px;
 }
 
 .nav-masthead .nav-link {
-  padding: .25rem 0;
   font-weight: 700;
   color: rgba(255, 255, 255, .5);
   background-color: transparent;
