@@ -13,16 +13,17 @@ def turn_on():
 def turn_off():
     GPIO.output(pump_enable, 0)
 
-while True:
-    status = input('On or Off? (1 or 0): ')
-    if status == '1':
-        try:
-            turn_on()
-        except:
-            print('Failed to turn ON GPIO pin {}'.format(pump_enable))
-    elif status == '0':
-        try:    
-            turn_off()
-        except:
-            print('Failed to turn OFF GPIO pin {}'.format(pump_enable))
+if __name__ == '__main__':
+    while True:
+        status = input('On or Off? (1 or 0): ')
+        if status == '1':
+            try:
+                turn_on()
+            except:
+                print('Failed to turn ON GPIO pin {}'.format(pump_enable))
+        elif status == '0':
+            try:    
+                turn_off()
+            except:
+                print('Failed to turn OFF GPIO pin {}'.format(pump_enable))
 
