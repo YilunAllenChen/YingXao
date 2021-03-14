@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_file
 
 
 app = Flask(__name__, 
@@ -20,10 +20,17 @@ def team():
 def tech():
     return render_template("technology.html")
 
+@app.route("/documents")
+def docs():
+    return render_template("documents.html")
+
 @app.route("/section/<string:section>")
 def temp(section: str):
     return render_template(f"subsections/{section}.html")
 
+@app.route("/download/<string:filename>")
+def download(filename: str):
+    return send_file(f"static/documents/{filename}")
 
 
 if __name__ == "__main__":
