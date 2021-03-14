@@ -3,7 +3,7 @@ import MoistureSensor.Moisture as Moisture
 import DHT22.DHT22 as DHT 
 import SI1145.SI1145 as light_sensor
 import StepMotor.stepper as step
-
+import Pump.pump as pump
 while True:
     try:
         # read environment humidity from DHT22
@@ -24,6 +24,10 @@ while True:
         # read moisture level from soil moisture sensor
         moisture = Moisture.moisture_reading()
         print('moisture level: {}'.format(moisture))
+        if moisture < 60.0:
+            pump.turn_on()
+        else:
+            pump.turn_off()
     except:
         print('Failed to read moisture level, check moisture sensor')
     try:
