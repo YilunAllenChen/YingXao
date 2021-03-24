@@ -118,3 +118,28 @@ main {
   background-position-y: center;
 
 }
+
+
+.bg-tech {
+  background: url("tech.jfif") fixed;
+  background-size: cover;
+  background-position-y: center;
+}
+
+.bg-cloud {
+  background: url("cloud_computing.jpg") fixed;
+  background-size: cover;
+  background-position-y: center;
+}
+
+.bg-embedded {
+  background: url("embedded.jpg") fixed;
+  background-size: cover;
+  background-position-y: center;
+}
+
+.bg-app {
+  background: url("mobile_app.jpg") fixed;
+  background-size: cover;
+  background-position-y: center;
+}

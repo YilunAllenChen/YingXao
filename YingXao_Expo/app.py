@@ -26,11 +26,11 @@ def docs():
 
 @app.route("/section/<string:section>")
 def temp(section: str):
-    return render_template(f"subsections/{section}.html")
+    return render_template(f"section/{section}.html")
 
 @app.route("/download/<string:filename>")
 def download(filename: str):
-    return send_file(f"static/documents/{filename}")
+    return send_file(f"static/download/{filename}")
 
 
 if __name__ == "__main__":
