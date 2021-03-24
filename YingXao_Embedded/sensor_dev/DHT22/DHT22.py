@@ -41,6 +41,7 @@ if __name__=='__main__':
             time.sleep(2.0)
             continue
         except Exception as error:
+            print(error)
             dhtDevice.exit()
             raise error
 

@@ -42,7 +42,7 @@ def forward(delay, steps):
             setStep(Seq[j][0], Seq[j][1], Seq[j][2], Seq[j][3])
             time.sleep(delay)
  
-def backwards(delay, steps):
+def backward(delay, steps):
     for i in range(steps):
         for j in reversed(range(StepCount)):
             setStep(Seq[j][0], Seq[j][1], Seq[j][2], Seq[j][3])
@@ -59,4 +59,4 @@ if __name__ == '__main__':
        steps = input("How many steps forward? ")
        forward(int(delay) / 1000.0, int(steps))
        steps = input("How many steps backwards? ")
-       backwards(int(delay) / 1000.0, int(steps))
+       backward(int(delay) / 1000.0, int(steps))
