@@ -74,6 +74,14 @@ if __name__ == "__main__":
                 mois = moisture.moisture_reading()
                 print("moisture level: ",mois)
                 # TODO: UPLOAD TO DATABASE
+                # check moisture level
+                # turn water pump ON if moisture below 60.0, OFF otherwise
+                if mois < 60.0:
+                    pump.turn_on()
+                    print("moisture level below 60, turning ON water pump")
+                else:
+                    pump.turn_off()
+                    print("moisture level above 60, turning OFF water pump")
             except:
                 # if failed to read moisture level, check moisture sensor
                 print("Failed to read moisture level")
