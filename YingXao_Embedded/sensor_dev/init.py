@@ -15,7 +15,7 @@ import pump
 
 # global variable declaration
 delay = 1.0 # step motor delay in ms
-step = 800  # 800 is the semicircle rotation steps
+steps = 800  # 800 is the semicircle rotation steps
 state = 0   # step motor state: 0 = solar shield OFF
             #                   1 = solar shield ON
 dht_failed = True   # reading flag for dht22, True if dht22 failed to read
@@ -77,7 +77,7 @@ if __name__ == "__main__":
                 # check moisture level
                 # turn water pump ON if moisture below 60.0, OFF otherwise
                 if mois < 60.0:
-                    pump.turn_on()
+                    # pump.turn_on()
                     print("moisture level below 60, turning ON water pump")
                 else:
                     pump.turn_off()
@@ -85,6 +85,21 @@ if __name__ == "__main__":
             except:
                 # if failed to read moisture level, check moisture sensor
                 print("Failed to read moisture level")
+            
+            print("----------------------------")
+            # TODO: get hours of sunlight needed for specific plant
+            # from database
+            # example using minutes from 4 to 8, so 4 minutes total
+            plant_hours = 4
+            if plant_hours == 4:
+                if (int(now.strftime("%M")) > 3) and state == 0:
+                    print("current minute greater than 3, turn clockwise")
+                    stepper.forward(delay / 1000, int(steps))
+                    state = 1
+                elif (int(now.strftime("%M")) > 7) and state == 1:
+                    print("current minute greater than 7, turn counterclockwise")
+                    stepper.backward(delay / 1000, int(steps))
+                    state = 0
             time.sleep(2)
     except KeyboardInterrupt:
         print("exiting the script")
