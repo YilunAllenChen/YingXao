@@ -34,6 +34,7 @@ if __name__ == "__main__":
             current_time = now.strftime("%H:%M:%S")
             print("----------------------------")
             print(current_time)
+            
             print("----------------------------")
             # DHT22 sensor reading
             # environment humidity and temperature
@@ -51,6 +52,7 @@ if __name__ == "__main__":
                 except:
                     # if failed to read humidity, read it again
                     dht_failed = True
+            
             print("----------------------------")
             # SI1145 sensor reading - sunlight info
             # visible light, uv light, and ir light
@@ -65,7 +67,16 @@ if __name__ == "__main__":
             except:
                 # if failed to read sunlight info, check SI1145
                 print("Failed to read sunlight information")
-
+            
+            print("----------------------------")
+            # moisture sensor reading 
+            try: 
+                mois = moisture.moisture_reading()
+                print("moisture level: ",mois)
+                # TODO: UPLOAD TO DATABASE
+            except:
+                # if failed to read moisture level, check moisture sensor
+                print("Failed to read moisture level")
             time.sleep(2)
     except KeyboardInterrupt:
         print("exiting the script")

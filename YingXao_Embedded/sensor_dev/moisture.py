@@ -11,9 +11,8 @@ air_reading = 16256.0
 dry_soil_reading = 15616.0
 def moisture_reading():
     return round((1 - (chan.value - water_reading) / water_reading) * 100, 2)
-"""
-while True:
-    print("moisture level: " + str(moisture_reading()) + "%")
-    print(chan.value, chan.voltage)
-    sleep(1)
-"""
+if __name__ == "__main__":    
+    while True:
+        print("moisture level: " + str(moisture_reading()) + "%")
+        print(chan.value, chan.voltage)
+        sleep(1)
