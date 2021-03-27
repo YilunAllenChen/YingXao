@@ -16,8 +16,8 @@ def get_uv():
 def get_ir():
     return round(SI1145.ReadIR, 0)
 
-"""
-def main():
+
+if __name__ == "__main__":
     print("Please use Ctrl C to quit")
     signal.signal(signal.SIGTSTP, handler) # Ctrl-z
     signal.signal(signal.SIGQUIT, handler) # Ctrl-\
@@ -25,6 +25,3 @@ def main():
         print('Visible %03d UV %.2f IR %03d' % (get_visible() , get_uv() , get_ir()) , end=" ")
         print('\r', end='')
         time.sleep(0.5)
-if __name__  == '__main__':
-    main()
-"""
