@@ -78,4 +78,16 @@
   }
 }
 
+.bg-product {
+  background: url("plant_bg.jfif") fixed;
+  background-size: cover;
+  background-position-y: center;
+  color: #FFFFFF
+}
+
+.jumbotron {
+  padding-top: 20vh;
+  height: 70vh;
+}
+
 .overflow-hidden { overflow: hidden; }
