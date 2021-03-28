@@ -1,0 +1,3 @@
+[console_scripts]
+seeed_si144x = seeed_si114x:main
+
