@@ -31,20 +31,7 @@ print("humidity_required: ",humidity_required)			#sample test
 firebase = firebase.FirebaseApplication('https://automated-gardener-default-rtdb.firebaseio.com/', None)
 
 def upload_data(dataTuple):
-	if dataTuple[0] == 'humidity':
-		firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', 'humidity', dataTuple[1])
-	elif dataTuple[0] == 'temperature in Celsius':
-		firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', 'temperature in Celsius', dataTuple[1])
-	elif dataTuple[0] == 'temperature in Fahrenheit':
-		firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', 'temperature in Fahrenheit', dataTuple[1])
-	elif dataTuple[0] == 'moisture':
-		firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', 'moisture', dataTuple[1])
-	elif dataTuple[0] == 'visible light intensity':
-		firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', 'visible light intensity', dataTuple[1])
-	elif dataTuple[0] == 'uv light intensity':
-		firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', 'uv light intensity', dataTuple[1])
-	elif dataTuple[0] == 'ir light intensity':
-		firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', 'ir light intensity', dataTuple[1])
+	firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', dataTuple[0], dataTuple[1])
 
 
 while True:
