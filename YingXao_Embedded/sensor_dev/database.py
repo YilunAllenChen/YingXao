@@ -4,7 +4,7 @@ import random
 # import MoistureSensor.Moisture as Moisture 
 # import DHT22.DHT22 as DHT
 # import SI1145.SI1145 as light_sensor
-plantType = 'tulip' #change to customer's choice
+plantType = 'lily' #change to customer's choice
 
 plantInfo = firebase.FirebaseApplication('https://plants-info-5b86b-default-rtdb.firebaseio.com/', None)
 # plantInfo.put('/plants-info-5b86b-default-rtdb/plantDatabase/-MUZV5yiF3xw9A9wqEMl/lily', 'sunlightTime_s', 3)
