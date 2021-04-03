@@ -12,6 +12,7 @@ import si1145
 import moisture
 import stepper
 import pump
+import database as db
 
 # global variable declaration
 delay = 1.0 # step motor delay in ms
@@ -48,6 +49,7 @@ if __name__ == "__main__":
                     print("temperature in Celsius: ",temp_c)
                     print("temperature in Fahrenheit: ",temp_f)
                     # TODO: UPLOAD TO DATABASE
+                    db.upload_data('humidity',humidity)
                     dht_failed = False
                 except:
                     # if failed to read humidity, read it again
@@ -90,6 +92,7 @@ if __name__ == "__main__":
             # TODO: get hours of sunlight needed for specific plant
             # from database
             # example using minutes from 4 to 8, so 4 minutes total
+            """
             plant_hours = 4
             if plant_hours == 4:
                 if (int(now.strftime("%M")) > 3) and state == 0:
@@ -100,6 +103,7 @@ if __name__ == "__main__":
                     print("current minute greater than 7, turn counterclockwise")
                     stepper.backward(delay / 1000, int(steps))
                     state = 0
+            """
             time.sleep(2)
     except KeyboardInterrupt:
         print("exiting the script")

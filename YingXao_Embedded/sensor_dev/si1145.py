@@ -22,6 +22,6 @@ if __name__ == "__main__":
     signal.signal(signal.SIGTSTP, handler) # Ctrl-z
     signal.signal(signal.SIGQUIT, handler) # Ctrl-\
     while True:
-        print('Visible %03d UV %.2f IR %03d' % (get_visible() , get_uv() , get_ir()) , end=" ")
-        print('\r', end='')
+        print('Visible %03d UV %.2f IR %03d' % (get_visible() , get_uv() , get_ir()))
+        # print('\r', end='')
         time.sleep(0.5)
