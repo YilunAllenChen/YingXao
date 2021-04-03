@@ -110,17 +110,17 @@ if __name__ == "__main__":
             # example using minutes from the value of the dictionary (ONLY FOR TESTING PURPOSE)
             # tuple inside the dictionary should be in hours
             # (hour to turn on solar shield, hour to turn off)
-            plant_dict = {8:(46,48)}
+            plant_dict = {8:(10,12)}
             plant_hours = int(db.get_data('sunlightTime_s'))
             print("Sunlight needed for this plant: ",plant_hours," hours")
-            if (int(now.strftime("%M"))) > (plant_dict[plant_hours][0]) and state == 0:
+            if (int(now.strftime("%H"))) == (plant_dict[plant_hours][0]) and state == 0:
                 print("current minute greater than {}, turn clockwise (open solar shield)".format(plant_dict[plant_hours][0]))
                 try:
                     stepper.forward(delay / 1000, int(steps))
                     state = 1
                 except:
                     print("Failed to turn solar gear")
-            elif (int(now.strftime("%M"))) > (plant_dict[plant_hours][1]) and state == 1:
+            elif (int(now.strftime("%H"))) == (plant_dict[plant_hours][1]) and state == 1:
                 print("current minute greater than {}, turn counterclockwise (close solar shield)".format(plant_dict[plant_hours][1]))
                 try:
                     stepper.backward(delay / 1000, int(steps))
