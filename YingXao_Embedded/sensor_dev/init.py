@@ -48,11 +48,18 @@ if __name__ == "__main__":
                     print("humidity: ",humidity)
                     print("temperature in Celsius: ",temp_c)
                     print("temperature in Fahrenheit: ",temp_f)
-                    # TODO: UPLOAD TO DATABASE
-                    db.upload_data('humidity',humidity)
+                    # UPLOAD TO DATABASE
+                    
+                    db.upload_data(('humidity',humidity))
+                    db.upload_data(('temperature in Celsius',temp_c))
+                    db.upload_data(('temperature in Fahrenheit',temp_f))
+                    
                     dht_failed = False
-                except:
+                except KeyboardInterrupt:
+                    raise
+                except Exception as e:
                     # if failed to read humidity, read it again
+                    print("Something bad happened : {}".format(str(e)))
                     dht_failed = True
             
             print("----------------------------")
@@ -66,6 +73,11 @@ if __name__ == "__main__":
                 print("uv light: ",uv)
                 print("ir light: ",ir)
                 # TODO: UPLOAD TO DATABASE
+                
+                db.upload_data(("visible light",visible))
+                db.upload_data(("uv index",uv))
+                db.upload_data(("ir light",ir))
+            
             except:
                 # if failed to read sunlight info, check SI1145
                 print("Failed to read sunlight information")
@@ -76,7 +88,11 @@ if __name__ == "__main__":
                 mois = moisture.moisture_reading()
                 print("moisture level: ",mois)
                 # TODO: UPLOAD TO DATABASE
+                
+                db.upload_data(("moisture level",mois))
+
                 # check moisture level
+               
                 # turn water pump ON if moisture below 60.0, OFF otherwise
                 if mois < 60.0:
                     # pump.turn_on()
@@ -92,6 +108,8 @@ if __name__ == "__main__":
             # TODO: get hours of sunlight needed for specific plant
             # from database
             # example using minutes from 4 to 8, so 4 minutes total
+            plant_hours = db.get_data('sunlightTime_s')
+            print("Sunlight needed for this plant: ",plant_hours," hours")
             """
             plant_hours = 4
             if plant_hours == 4:
