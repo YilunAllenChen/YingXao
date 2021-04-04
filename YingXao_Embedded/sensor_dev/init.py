@@ -51,8 +51,8 @@ if __name__ == "__main__":
                     # UPLOAD TO DATABASE
                     
                     db.upload_data(('humidity',humidity))
-                    db.upload_data(('temperature in Celsius',temp_c))
-                    db.upload_data(('temperature in Fahrenheit',temp_f))
+                    db.upload_data(('temperature_in_Celsius',temp_c))
+                    db.upload_data(('temperature_in_Fahrenheit',temp_f))
                     
                     dht_failed = False
                 except KeyboardInterrupt:
@@ -74,9 +74,9 @@ if __name__ == "__main__":
                 print("ir light: ",ir)
                 # TODO: UPLOAD TO DATABASE
                 
-                db.upload_data(("visible light",visible))
-                db.upload_data(("uv index",uv))
-                db.upload_data(("ir light",ir))
+                db.upload_data(("visible_light",visible))
+                db.upload_data(("uv_index",uv))
+                db.upload_data(("ir_light",ir))
             
             except:
                 # if failed to read sunlight info, check SI1145
@@ -89,7 +89,7 @@ if __name__ == "__main__":
                 print("moisture level: ",mois)
                 # TODO: UPLOAD TO DATABASE
                 
-                db.upload_data(("moisture level",mois))
+                db.upload_data(("moisture_level",mois))
 
                 # check moisture level
                
