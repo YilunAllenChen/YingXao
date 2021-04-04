@@ -19,6 +19,8 @@ if __name__ == '__main__':
         if status == '1':
             try:
                 turn_on()
+                time.sleep(10)
+                turn_off()
             except:
                 print('Failed to turn ON GPIO pin {}'.format(pump_enable))
         elif status == '0':
