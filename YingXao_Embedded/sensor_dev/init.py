@@ -118,14 +118,14 @@ if __name__ == "__main__":
             if (int(now.strftime("%H"))) == (plant_dict[plant_hours][0]) and state == 0:
                 print("current minute greater than {}, turn clockwise (open solar shield)".format(plant_dict[plant_hours][0]))
                 try:
-                    stepper.forward(delay / 1000, int(steps))
+                    stepper.backward(delay / 1000, int(steps))
                     state = 1
                 except:
                     print("Failed to turn solar gear")
             elif (int(now.strftime("%H"))) == (plant_dict[plant_hours][1]) and state == 1:
                 print("current minute greater than {}, turn counterclockwise (close solar shield)".format(plant_dict[plant_hours][1]))
                 try:
-                    stepper.backward(delay / 1000, int(steps))
+                    stepper.forward(delay / 1000, int(steps))
                     state = 0
                 except:
                     print("Failed to turn solar gear")
