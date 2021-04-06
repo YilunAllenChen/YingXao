@@ -3,4 +3,4 @@
 # cd into repo.
 # run this script
 
-cp -r YingXao_Expo/statically_served_version/* ../
+cp -r YingXao_Expo/ece_server_version/* ../
