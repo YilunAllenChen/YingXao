@@ -1,0 +1,1 @@
+cp -r YingXao_Expo/statically_served_version/* ../
