@@ -1,0 +1,9 @@
+Bluetooth and Wifi
+By Xi Li
+In order to make our product accessible to users who have no knowledge or experience of Raspberry Pi, it is important 
+for us to provide users with an accessible interface to give Raspberry Pi WiFi network credential information
+without opening terminal of Pi. There are many solutions of this problem, but the bluetooth connection is one of the 
+most accessible method with lowest cost among all solutions
+For bluetooth and Wifi connection, we first set Pi into No Input No Output mode which allows users to connect to the bluetooth without access to Raspberry Pi terminal.
+Then users can use App to modify the WiFi credential file to match user's WiFi(User Name and Password)
+Having all these setup, YingXao is able to connect to any Wifi that users want them to connect.
