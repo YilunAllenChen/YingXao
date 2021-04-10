@@ -81,23 +81,23 @@
 
 
       <article class="blog-post">
-        <h2 class="blog-post-title">Why 3D Printing?</h2>
-        <p class="block-post-meta"> By Allen Chen </p>
+        <h2 class="blog-post-title">What’s inside of YingXao?</h2>
+        <p class="block-post-meta"> By Yida Wang </p>
 
         <p> </p>
         <div class="row">
           <div class="col-md-6">
-            <p>In the early days of YingXao, as we started to think about how we want to achieve the goals we set for the project, we realized very quickly that we need 
-            highly specialized hardware that are of irregular shapes. For example, our sunlight control mechanism required a special pair of spur gears. The follower gear needs to be not 
-            only hollow enough so it can sit comfortably on our base, but also bulky enough to hold up the blackout panel (See our preliminary design on the right).</p>
-            <p>Also, knowing that we have limited exposure to mechanical designs, we thought that we would probably need many iterations to have a robust functional design. This puts us
-            on a tight schedule for each iteration. That means we need to, not only move fast, but also get results fast.</p>
-            <p>Having all these constraints, it seemed like 3D printing is our only option. Fast turnover rate, the ability to print all kinds of irregular shapes, and solid build quality (if you do it right).</p>
+            <p>YingXao is a smart gardening solution that helps people take care of small plant 24/7. The system is consisted of three main components: microcontroller, sensors, and actuators. </p>
+            <p>The overall system performance is mainly determined by the microcontroller because it represents the 'brain' of the system. The microcontroller is connected to all the sensors to 
+              receive all the necessary data from the plant while it is also sending the data to the database. </p>
+            <p>We chose Raspberry Pi Zero W as the 'brain' of YingXao. Raspberry Pi Zero W features with Wi-Fi and Bluetooth connectivity, which is suitable for our communication between sensors 
+              and database. Meanwhile, the cost and power consumption Pi Zero W also beats other microcontrollers. According to SocialCompare, a single Pi Zero W only cost $10.00, and its power 
+              rating is only 180mA [1].</p>
           </div>
           <div class="col-md-6">
-            <img src="../yingxao_design_scratch.jpg" style="width: 80%">
+            <img src="../pi_zero_w.png" style="width: 80%">
             <br>
-            <p style="text-align: center"><b>Figure:</b> Design Sketch of YingXao's Sunlight Control Mechanism</p>
+            <p style="text-align: left"><b>Figure:</b> Raspberry Pi Zero W</p>
           </div>
         </div>
 
@@ -109,79 +109,102 @@
 
 
       <article class="blog-post">
-        <h2 class="blog-post-title">Proof of Concept at Home, Production Build at Studio</h2>
-        <p class="block-post-meta"> By Allen Chen </p>
+        <h2 class="blog-post-title">Sensor Development</h2>
+        <p class="block-post-meta"> By Yida Wang </p>
 
-        <p>Conveniently enough, Allen has a 3-D printer from <a href="https://anycubic.com/">AnyCubic </a> in his bedroom. This is not a surprise becauase Allen is a huge advocate for rapid prototyping and maker culture.
-        Although this printer doesn't have top-tier print quality, it still prints really solid builds if we judge on a proof-of-concept prototype standard.</p>
-
-        <p>The advantage of printing at home is that it has near-zero turnover time. During our peak times, we complete one iteration on a design every two days, and it stayed like that for two weeks. This allowed</p> 
-        us to have, within the first 2 months of development:</p>
+        <p>There are three type sensors in YingXao: </p>
         <ul>
-          <li>3 iter. of Backpack (deprecated)</li>
-          <li>3 iter. of Midplate (deprecated)</li>
-          <li>4 iter. of Motor Mount (deprecated)</li>
-          <li>6 iter. of Solar Gear Bearing</li>
-          <li>13 iter. of Solar Gear Driver</li>
-          <li>7 iter. of Solar Gear Ring</li>
-          <li>5 iter. of Universal Mount</li>
+          <li>DHT22 (humidity and temperature)</li>
+          <li>SI1145 (sunlight)</li>
+          <li>Capacitive Moisture Sensor (moisture level)</li>
         </ul>
-        <p>And whenever we are in need of production-level builds, we go to makerspaces that have high-end 3-D printers to print our parts.</p>
-        <hr>
-      </article><!-- /.blog-post -->
-
-
-      <article class="blog-post">
-        <h2 class="blog-post-title">Universal Mount: Centralized space for electronics</h2>
-        <p class="block-post-meta"> By Allen Chen </p>
-        
+        <!-- DHT 22 -->
         <div class="row">
           <div class="col-md-6">
-            <img src="../yingxao_design_um_scratch.jpg" style="width: 80%">
+            <p>We were initially planned to use the DHT11 as our humidity and temperature sensor, but because the DHT11 failed to read data more than 50% of the time, 
+              we decided to switch to its successor, the DHT22. This sensor comes with a dedicated Negative Temperature Coefficient (NTC) thermistor to measure temperature 
+              and an 8-bit microcontroller to output the digital value of temperature and humidity. The DHT22 is able to measure temperature from -40°C to 80°C and relative 
+              humidity from 0% to 100% with an accuracy of ±1°C and ±1% [2].</p>
+          </div>
+          
+          <div class="col-md-6">
+            <img src="../dht22.jpg" style="width: 30%">
             <br>
-            <p style="text-align: center"><b>Figure:</b> Preliminary design sketch of YingXao's Universal Mount</p>
+            <p style="text-align: left"><b>Figure:</b> DHT22 Temperature-Humidity Sensor </p>
+          </div>
+
+        <!-- SI1145 -->
+          <div class="col-md-6">
+            <p>Plants need the energy from the sunlight to produce the necessary nutrients. 
+              However, sometime they absorb too much energy than they can use, and that will damage the critical proteins [3].</p>
+            <p>We are using SI1145 sunlight sensor from the Grove to help us detect different spectrums of the sunlight. 
+              The SI1145 is a low-power, reflectance-based, infrared proximity, UV index and ambient light sensor with I2C digital 
+              interface and programmable-event interrupt output. This sensor offers excellent performance under a wide dynamic range 
+              and a variety of light sources including direct sunlight [4].</p>
+          </div>
+          
+          <div class="col-md-6">
+            <img src="../si1145.jpg" style="width: 30%">
+            <br>
+            <p style="text-align: left"><b>Figure:</b> Grove - Sunlight sensor (UV-light, visible light and infrared light) - SI1145 </p>
+          </div>
+        <!-- Moisture Sensor -->
+          <div class="col-md-6">
+            <p>Another important data we need from the plant is the moisture level of the soil. We need this information to determine the 
+              amount of water for the plant. We decided to use the capacitive moisture sensor from the Grove. It is a soil moisture sensor
+               based on the capacitance changes. Compared with resistive sensors, capacitive sensors do not require direct exposure of the 
+               metal electrodes, which can significantly reduce the erosion of the electrodes. Hence, we call it Corrosion Resistant [5].</p>
+          </div>
+          
+          <div class="col-md-6">
+            <img src="../moisture.jpg" style="width: 30%">
+            <br>
+            <p style="text-align: left"><b>Figure:</b> Grove - Capacitive Moisture Sensor (Corrosion-Resistant) </p>
+          </div>
+        </div>
+        <hr>
+        
+      </article><!-- /.blog-post -->
+
+
+      <article class="blog-post">
+        <h2 class="blog-post-title">Actuators</h2>
+        <p class="block-post-meta"> By Yida Wang </p>
+
+        <p>We have two main actuators in YingXao: </p>
+        <ul>
+          <li>Stepper Motors</li>
+          <li>Liquid Pump</li>
+        </ul>
+
+        <div class="row">
+          <div class="col-md-6">
+            <img src="../stepper.jpg" style="width: 40%">
+            <br>
+            <p style="text-align: center"><b>Figure:</b> 28BYJ-48 - 5V Stepper Motor</p>
          </div>
           <div class="col-md-6">
-            <p>At the very beginning, we were thinking about placing our electronics and actuators (for sunlight and water control) in two separate places. And yes, you guessed
-            it right, it was the deprecated "Backpack" and "Motor Mount" components. We made such a decision after realizing that there's really no benefit in putting these
-            in a distributed manner. Pretty much the opposite, it gives several siginificant drawbacks: It openly exposes some of the most critical wires, introduces difficulties
-            holding both of them in place when we try to put on the Solar Gear System, and a good number of other smaller problems.</p>
-
-            <p>Therefore we decided that we would put all electronics, and really anything that's sensitive at all, in a big box. And intuitively we would call it, the Universal Mount.
-            The Universal Mount module clings onto our pot, and acts as the brain and hand of our system.</p>
-
+            <p>Stepper Motors plays an important role in YingXao because it controls the rotation of the solar shield. 
+              We need to choose a stepper motor that is able to rotate both clockwise and counterclockwise precisely 
+              during sunlight operation of the plant. 28-BYJ48 Stepper Motors is the most commonly used stepper motor. 
+              It has a 4-coil unipolar arrangement and each coil is rated for +5V hence it is relatively easy to control 
+              with any basic microcontrollers [6]. </p>
+          </div>
+          <div class="col-md-6">
+            <img src="../pump.jpg" style="width: 50%">
+            <br>
+            <p style="text-align: center"><b>Figure:</b> Peristaltic Liquid Pump with Silicone Tubing - 12V DC Power</p>
+         </div>
+          <div class="col-md-6">
+            <p>Besides the stepper motors that controls the solar shield for the sunlight of the plant, we also need a 
+              water pump that can irrigate the plants. After testing with multiple water pumps, we found that Peristaltic 
+              Liquid Pump with Silicone Tubing from Adafruit works the best for YingXao. Since this is a peristaltic type
+               water pump, the pump actually squishes the silicone tubing that contains the liquid instead of impelling it 
+               directly like other common water pumps [7]. This liquid pump needs to be powered with 12V DC power, and it 
+               can pump the water with 100 milliliters per minutes. It is the most suitable water pump we have found for YingXao. </p>
           </div>
         </div>
 
-
-        <hr>
-      </article><!-- /.blog-post -->
-
-      <article class="blog-post">
-        <h2 class="blog-post-title">The Solar Gear System</h2>
-        <p class="block-post-meta"> By Allen Chen </p>
-
-        <p>Our team had a lot of interesting discussions on how we want to approach the sunlight control problem. What was obvious to us was that we need an acutation system, but how do we want to build it? </p>
-        <p>To figure that out, we first need to decide which way to go - sideways, around, or vertically? All of the three ways seemed viable to us as ways to control sunlight input for our system.</p>
-        <p>We decided to explore the vertical option, only to find that it was a dead end. We called it the "Toaster" approach, because when we lift a blind up to block the sunlight, the system looks like a toaster
-        with a toast inside poking its head out. The success of this approach depended on two key factors, which we found both too difficult to solve in a clean way:</p>
-        <ol>
-          <li>We need to store the blind inside the toaster, just like the car window needs to be stored in the door. That means the toaster needs to be at least as tall, if not taller, than 
-          the blind.</li>
-          <li>We need to maintain the stability of the blind once it's fully up without support from the sides.</li>
-        </ol>
-        <p>We then turned to the "around" option, and decided to go all in with that. Not only is it going to be much more robust than the other two approaches, but it's also cool to look at. I mean, who doesn't like gears?</p>
-
-        <p>We will have a spur gear system, with the smaller driver gear being driven by our stepper motor. The bigger follower gear, which we call the Ring, will be held in place in terms of translation but free in terms of rotation.
-        It will hold up a blocker that only covers a portion of the entire circle. We hold the Ring in place by letting it sit comfortably on a base, which we call the Bearing.</p>
-
-        <p>Months later, as we started doing hardware/software integration, we also added numerous minor tweaks to make them comply to our system requirements. Namely:</p>
-        <ul>
-          <li>Completely fill one of the gap between two Ring's gear teeth so that we can use it as a calibration lock.</li>
-          <li>Merged the Ring with the blocker to be one big component.</li>
-          <li>Levelled the base that the ring sits on and made holes for sensor wires and water tubes to go through.</li>
-          <li>and of course, you guessed it, etc.</li>
-        </ul>
 
         <hr>
       </article><!-- /.blog-post -->
@@ -215,18 +238,15 @@
       <div class="p-4">
         <h4 class="fst-italic">References / Related Documents</h4>
         <ol class="list-unstyled mb-0">
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">March 2014</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">February 2014</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">January 2014</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">December 2013</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">November 2013</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">October 2013</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">September 2013</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">August 2013</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">July 2013</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">June 2013</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">May 2013</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">April 2013</a></li>
+          <li><a href="https://socialcompare.com/en/comparison/raspberrypi-models-comparison">SocialCompare</a></li>
+          <li><a href="https://www.raspberrypi.org/products/raspberry-pi-zero-w/">Raspberry Pi Zero W</a></li>
+          <li><a href="https://components101.com/sensors/dht22-pinout-specs-datasheet">DHT22</a></li>
+          <li><a href="https://news.mit.edu/2018/mit-energy-initiative-better-understanding-how-plants-use-sunlight-1204">Understanding how plants use sunlight</a></li>
+          <li><a href="https://www.seeedstudio.com/Grove-Sunlight-Sensor.html">Grove - Sunlight sensor</a></li>
+          <li><a href="https://www.robotshop.com/en/grove-capacitive-moisture-sensor-corrosion-resistant.html">Grove Capacitive Moisture Sensor</a></li>
+          <li><a href="https://components101.com/motors/28byj-48-stepper-motor">28BYJ-48</a></li>
+          <li><a href="https://tutorials-raspberrypi.com/how-to-control-a-stepper-motor-with-raspberry-pi-and-l293d-uln2003a/">Stepper Motor</a></li>
+          <li><a href="https://www.adafruit.com/product/1150">Peristaltic Liquid Pump</a></li>
         </ol>
       </div>
 
@@ -235,7 +255,6 @@
         <ol class="list-unstyled">
           <li><a href="https://github.com/YilunAllenChen/YingXao/tree/main/YingXao_Mechanical">GitHub: YingXao Mechanical</a></li>
           <li><a href="https://coda.io/d/Senior-Design-Notebook_dczEd0e2DqA/Design-Notebook-Yilun-Chen_su_Tj#_luMOy">Allen's Design Notebook</a></li>
-          <li><a href="https://getbootstrap.com/docs/5.0/examples/blog/#">Facebook</a></li>
         </ol>
       </div>
     </div>
