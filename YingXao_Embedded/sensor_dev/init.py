@@ -37,6 +37,9 @@ if __name__ == "__main__":
             print(current_time)
             
             print("----------------------------")
+            print("Current solar shield state: ",state)
+            print("----------------------------")
+            
             # DHT22 sensor reading
             # environment humidity and temperature
             dht_failed = True   # RESET reading flag
@@ -112,7 +115,7 @@ if __name__ == "__main__":
             # example using minutes from the value of the dictionary (ONLY FOR TESTING PURPOSE)
             # tuple inside the dictionary should be in hours
             # (hour to turn on solar shield, hour to turn off)
-            plant_dict = {2:(10,12)}
+            plant_dict = {2:(14,15)}
             plant_hours = int(db.get_data('sunlightTime_s'))
             print("Sunlight needed for this plant: ",plant_hours," hours")
             if (int(now.strftime("%H"))) == (plant_dict[plant_hours][0]) and state == 0:
