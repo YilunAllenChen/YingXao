@@ -1,4 +1,5 @@
 import Adafruit_DHT
+import time
 
 DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_PIN = 16
@@ -20,3 +21,4 @@ if __name__ == "__main__":
             print("Temp in C = {}, F = {}, Humidity = {}".format(get_temperature_c(),get_temperature_f(),get_humidity()))
         else:
             print("Failed to retrieve data from humidity sensor")
+        time.sleep(2)
