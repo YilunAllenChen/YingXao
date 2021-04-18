@@ -6,14 +6,14 @@ import random
 # import SI1145.SI1145 as light_sensor
 plantType = 'lily' #change to customer's choice
 
-plantInfo = firebase.FirebaseApplication('https://plants-info-5b86b-default-rtdb.firebaseio.com/', None)
+firebase = firebase.FirebaseApplication('https://automated-gardener-default-rtdb.firebaseio.com/', None)
 # plantInfo.put('/plants-info-5b86b-default-rtdb/plantDatabase/-MUZV5yiF3xw9A9wqEMl/lily', 'sunlightTime_s', 3)
 # plantInfo.put('/plants-info-5b86b-default-rtdb/plantDatabase/-MUZV5yiF3xw9A9wqEMl/tulip', 'sunlightTime_s', 8)
-result = plantInfo.get('/plants-info-5b86b-default-rtdb/plantDatabase', '')
+result = firebase.get('/automated-gardener-default-rtdb/plantInfo', '')
 
 #dataType can be 'humidity_s', 'moisture_s', 'sunlight_s', 'temperatureC_s', 'temperatureF_s', 'sunlightTime_s'
 def get_data(dataType):
-	return result['-MUZV5yiF3xw9A9wqEMl'][plantType][dataType]
+	return result[plantType][dataType]
 	
 
 humidity_required = get_data('humidity_s')             #sample test
