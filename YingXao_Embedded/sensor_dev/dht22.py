@@ -21,4 +21,4 @@ if __name__ == "__main__":
             print("Temp in C = {}, F = {}, Humidity = {}".format(get_temperature_c(),get_temperature_f(),get_humidity()))
         else:
             print("Failed to retrieve data from humidity sensor")
-        time.sleep(2)
+        time.sleep(1)

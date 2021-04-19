@@ -16,7 +16,7 @@ import database as db
 
 # global variable declaration
 delay = 1.0 # step motor delay in ms
-steps = 800  # 800 is the semicircle rotation steps
+steps = 825  # 825 is the semicircle rotation steps
 state = 0   # step motor state: 0 = solar shield OFF
             #                   1 = solar shield ON
 dht_failed = True   # reading flag for dht22, True if dht22 failed to read
@@ -115,7 +115,7 @@ if __name__ == "__main__":
             # example using minutes from the value of the dictionary (ONLY FOR TESTING PURPOSE)
             # tuple inside the dictionary should be in hours
             # (hour to turn on solar shield, hour to turn off)
-            plant_dict = {2:(14,15)}
+            plant_dict = {2:(12,14)}
             plant_hours = int(db.get_data('sunlightTime_s'))
             print("Sunlight needed for this plant: ",plant_hours," hours")
             if (int(now.strftime("%H"))) == (plant_dict[plant_hours][0]) and state == 0:
