@@ -43,20 +43,19 @@
             </li>
             <li class="nav-item">
               <div class="dropdown">
-                <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle active" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Technology  
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="/sd21p45/section/app.html">Mobile App</a>
                   <a class="dropdown-item" href="/sd21p45/section/embedded.html">Embedded Systems</a>
-                  <a class="dropdown-item" href="/sd21p45/section/cloudinfra.html">Cloud Infrastructure</a>
                   <a class="dropdown-item" href="/sd21p45/section/expo.html">Web Development</a>
                   <a class="dropdown-item" href="/sd21p45/section/mechanical.html">Mechanical</a>
                   <a class="dropdown-item" href="/sd21p45/section/misc.html">Miscellaneous</a>
                 </div>
               </div>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/sd21p45/documents.html">Downloads</a>
             </li>
           </ul>
@@ -218,9 +217,35 @@
         </div>
 
 
+
         <hr>
       </article><!-- /.blog-post -->
 
+      <article class="blog-post">
+        <h2 class="blog-post-title">Bluetooth and Wifi</h2>
+        <p class="block-post-meta"> By Xi Li </p>
+
+        <p> </p>
+        <div class="row">
+          <div class="col-md-6">
+            <p>In order to make our product accessible to users who have no knowledge or experience of Raspberry Pi, it is important for us to provide users with an accessible interface to give Raspberry Pi WiFi network credential information without opening terminal of Pi. There are many solutions of this problem, but the bluetooth connection is one of the most accessible method with lowest cost among all solutions.</p>
+            <p>          
+For bluetooth and Wifi connection, we first set Pi into No Input No Output mode which allows users to connect to the bluetooth without access to Raspberry Pi terminal.
+Then users can use App to modify the WiFi credential file to match user's WiFi(User Name and Password).</p>
+            <p>Having all these setup, YingXao is able to connect to any Wifi that users want them to connect.</p>
+    
+
+          </div>
+          <div class="col-md-6">
+            <img src="../yingxao_app_wifi.PNG" style="width: 80%" class="center">
+            <br>
+            <p class="center"><b>Figure:</b> WiFi Connection and Bluetooth</p>
+          </div>
+        </div>
+
+        <hr>
+      </article><!-- /.blog-post -->
+      
     </div>
     <div class="col-md-4">
       <div class="p-4 mb-3 bg-light rounded">

@@ -42,20 +42,19 @@
             </li>
             <li class="nav-item">
               <div class="dropdown">
-                <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle active" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Technology  
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="/sd21p45/section/app.html">Mobile App</a>
                   <a class="dropdown-item" href="/sd21p45/section/embedded.html">Embedded Systems</a>
-                  <a class="dropdown-item" href="/sd21p45/section/cloudinfra.html">Cloud Infrastructure</a>
                   <a class="dropdown-item" href="/sd21p45/section/expo.html">Web Development</a>
                   <a class="dropdown-item" href="/sd21p45/section/mechanical.html">Mechanical</a>
                   <a class="dropdown-item" href="/sd21p45/section/misc.html">Miscellaneous</a>
                 </div>
               </div>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/sd21p45/documents.html">Downloads</a>
             </li>
           </ul>
@@ -80,23 +79,17 @@
 
 
       <article class="blog-post">
-        <h2 class="blog-post-title">Why 3D Printing?</h2>
-        <p class="block-post-meta"> By Allen Chen </p>
+        <h2 class="blog-post-title">Why Firebase?</h2>
+        <p class="block-post-meta"> By Yihan Jiang </p>
 
-        <p> </p>
         <div class="row">
           <div class="col-md-6">
-            <p>In the early days of YingXao, as we started to think about how we want to achieve the goals we set for the project, we realized very quickly that we need 
-            highly specialized hardware that are of irregular shapes. For example, our sunlight control mechanism required a special pair of spur gears. The follower gear needs to be not 
-            only hollow enough so it can sit comfortably on our base, but also bulky enough to hold up the blackout panel (See our preliminary design on the right).</p>
-            <p>Also, knowing that we have limited exposure to mechanical designs, we thought that we would probably need many iterations to have a robust functional design. This puts us
-            on a tight schedule for each iteration. That means we need to, not only move fast, but also get results fast.</p>
-            <p>Having all these constraints, it seemed like 3D printing is our only option. Fast turnover rate, the ability to print all kinds of irregular shapes, and solid build quality (if you do it right).</p>
+            <p>Firebase Realtime Database allows us to synchronize and access a large amount of data online. In our project, we use two sub-databasesThe first one, “PlantInfo”, contains the desired moisture and sunlight requirement for a variety of plants. Our microcontroller reads these standard values from the “PlantInfo” database as a reference for controlling the sunlight shade and the water pump. The second sub-database, “Realtime-Sensor”, stores the data from real-time sensor reading. The pot-body section of the YingXao Gardener posts the real-time sensor data to the firebase, and the App section reads those sensor data as well as the desired data for the specific plant, displaying them for customers. </p>
           </div>
           <div class="col-md-6">
-            <img src="../yingxao_design_scratch.jpg" style="width: 80%">
+            <img src="../sw_arch.png" style="width: 80%">
             <br>
-            <p style="text-align: center"><b>Figure:</b> Design Sketch of YingXao's Sunlight Control Mechanism</p>
+            <p style="text-align: center"><b>Figure:</b> software architecture of YingXao</p>
           </div>
         </div>
 
@@ -108,82 +101,29 @@
 
 
       <article class="blog-post">
-        <h2 class="blog-post-title">Proof of Concept at Home, Production Build at Studio</h2>
-        <p class="block-post-meta"> By Allen Chen </p>
-
-        <p>Conveniently enough, Allen has a 3-D printer from <a href="https://anycubic.com/">AnyCubic </a> in his bedroom. This is not a surprise becauase Allen is a huge advocate for rapid prototyping and maker culture.
-        Although this printer doesn't have top-tier print quality, it still prints really solid builds if we judge on a proof-of-concept prototype standard.</p>
-
-        <p>The advantage of printing at home is that it has near-zero turnover time. During our peak times, we complete one iteration on a design every two days, and it stayed like that for two weeks. This allowed</p> 
-        us to have, within the first 2 months of development:</p>
-        <ul>
-          <li>3 iter. of Backpack (deprecated)</li>
-          <li>3 iter. of Midplate (deprecated)</li>
-          <li>4 iter. of Motor Mount (deprecated)</li>
-          <li>6 iter. of Solar Gear Bearing</li>
-          <li>13 iter. of Solar Gear Driver</li>
-          <li>7 iter. of Solar Gear Ring</li>
-          <li>5 iter. of Universal Mount</li>
-        </ul>
-        <p>And whenever we are in need of production-level builds, we go to makerspaces that have high-end 3-D printers to print our parts.</p>
-        <hr>
-      </article><!-- /.blog-post -->
+        <h2 class="blog-post-title">App Design</h2>
+        <p class="block-post-meta"> By Yihan Jiang </p>
 
 
-      <article class="blog-post">
-        <h2 class="blog-post-title">Universal Mount: Centralized space for electronics</h2>
-        <p class="block-post-meta"> By Allen Chen </p>
-        
         <div class="row">
           <div class="col-md-6">
-            <img src="../yingxao_design_um_scratch.jpg" style="width: 80%">
-            <br>
-            <p style="text-align: center"><b>Figure:</b> Preliminary design sketch of YingXao's Universal Mount</p>
-         </div>
+              <p>StartPage contains three buttons, which directs users to the WiFi setup page, the login page, the signup page. New users will go to the WiFi setup page first. After connecting YingXao to WiFi, users will go to the signup page to create their own account. The credentials for each account should not be empty. The username name should be unique, and the password is required to be longer than 6. Hints will be popped out if any of them fails to meet the requirement. </p>
+
+              <p>After signing up or login through existing accounts, the display page will allow users to choose the plant. One thing to mention is that the plant choosing activity could be put in a separate page if a commercial plantInfo database is built. According to our experimental plantInfo database, we combine the plant choosing page and the data displaying page to make it easier to read.</p>
+            
+              <p>Besides choosing the plant type, the displaying page shows users the current type of the plant they chose, the real-time sensor data and the desired data of humidity, sunlight, moisture, and temperature for the chosen plant. The real-time sensor data will update once the data in the firebase changes. </p>
+           </div>
           <div class="col-md-6">
-            <p>At the very beginning, we were thinking about placing our electronics and actuators (for sunlight and water control) in two separate places. And yes, you guessed
-            it right, it was the deprecated "Backpack" and "Motor Mount" components. We made such a decision after realizing that there's really no benefit in putting these
-            in a distributed manner. Pretty much the opposite, it gives several siginificant drawbacks: It openly exposes some of the most critical wires, introduces difficulties
-            holding both of them in place when we try to put on the Solar Gear System, and a good number of other smaller problems.</p>
-
-            <p>Therefore we decided that we would put all electronics, and really anything that's sensitive at all, in a big box. And intuitively we would call it, the Universal Mount.
-            The Universal Mount module clings onto our pot, and acts as the brain and hand of our system.</p>
-
+            <img src="../sw_workflow.png" style="width: 80%">
+            <br>
+            <p style="text-align: center"><b>Figure:</b> App workflow of YingXao</p>
           </div>
         </div>
 
 
-        <hr>
+           <hr>
       </article><!-- /.blog-post -->
 
-      <article class="blog-post">
-        <h2 class="blog-post-title">The Solar Gear System</h2>
-        <p class="block-post-meta"> By Allen Chen </p>
-
-        <p>Our team had a lot of interesting discussions on how we want to approach the sunlight control problem. What was obvious to us was that we need an acutation system, but how do we want to build it? </p>
-        <p>To figure that out, we first need to decide which way to go - sideways, around, or vertically? All of the three ways seemed viable to us as ways to control sunlight input for our system.</p>
-        <p>We decided to explore the vertical option, only to find that it was a dead end. We called it the "Toaster" approach, because when we lift a blind up to block the sunlight, the system looks like a toaster
-        with a toast inside poking its head out. The success of this approach depended on two key factors, which we found both too difficult to solve in a clean way:</p>
-        <ol>
-          <li>We need to store the blind inside the toaster, just like the car window needs to be stored in the door. That means the toaster needs to be at least as tall, if not taller, than 
-          the blind.</li>
-          <li>We need to maintain the stability of the blind once it's fully up without support from the sides.</li>
-        </ol>
-        <p>We then turned to the "around" option, and decided to go all in with that. Not only is it going to be much more robust than the other two approaches, but it's also cool to look at. I mean, who doesn't like gears?</p>
-
-        <p>We will have a spur gear system, with the smaller driver gear being driven by our stepper motor. The bigger follower gear, which we call the Ring, will be held in place in terms of translation but free in terms of rotation.
-        It will hold up a blocker that only covers a portion of the entire circle. We hold the Ring in place by letting it sit comfortably on a base, which we call the Bearing.</p>
-
-        <p>Months later, as we started doing hardware/software integration, we also added numerous minor tweaks to make them comply to our system requirements. Namely:</p>
-        <ul>
-          <li>Completely fill one of the gap between two Ring's gear teeth so that we can use it as a calibration lock.</li>
-          <li>Merged the Ring with the blocker to be one big component.</li>
-          <li>Levelled the base that the ring sits on and made holes for sensor wires and water tubes to go through.</li>
-          <li>and of course, you guessed it, etc.</li>
-        </ul>
-
-        <hr>
-      </article><!-- /.blog-post -->
 
     </div>
     <div class="col-md-4">
@@ -193,7 +133,7 @@
 
         <p class="mb-0"> 
         <a href="https://www.linkedin.com/in/yihanjiang01/">Yihan Jiang</a>  
-        is the software lead.
+        designed and implemented the mobile app's business logic and designed the UI. 
         </p>
 
         <br>
@@ -205,7 +145,7 @@
         <br>
         <p class="mb-0"> 
         <a href="https://www.linkedin.com/in/yilun-allen-chen-572b71141/">Allen Chen</a>  
-        helped design the software architecture and overall workflow.
+        helped design the software architecture and the app workflow.
         </p>
 
       </div>
