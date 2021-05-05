@@ -16,7 +16,7 @@ import database as db
 
 # global variable declaration
 delay = 1.0 # step motor delay in ms
-steps = 800  # 800 is the semicircle rotation steps
+steps = 825  # 825 is the semicircle rotation steps
 state = 0   # step motor state: 0 = solar shield OFF
             #                   1 = solar shield ON
 dht_failed = True   # reading flag for dht22, True if dht22 failed to read
@@ -25,6 +25,8 @@ dht_failed = True   # reading flag for dht22, True if dht22 failed to read
 if __name__ == "__main__":
     # make sure water pump is turned OFF initially
     pump.turn_off()
+    # debug solar shield state
+    state = int(input("Enter solar shield state: "))
     # start operation
     try:
         while True:
@@ -62,7 +64,7 @@ if __name__ == "__main__":
                     raise
                 except Exception as e:
                     # if failed to read humidity, read it again
-                    print("Something bad happened : {}".format(str(e)))
+                    print("Failed to read from DHT22 : {}".format(str(e)))
                     dht_failed = True
             
             print("----------------------------")
@@ -115,18 +117,22 @@ if __name__ == "__main__":
             # example using minutes from the value of the dictionary (ONLY FOR TESTING PURPOSE)
             # tuple inside the dictionary should be in hours
             # (hour to turn on solar shield, hour to turn off)
-            plant_dict = {2:(14,15)}
+            plant_dict = {2:(12,16)}
             plant_hours = int(db.get_data('sunlightTime_s'))
             print("Sunlight needed for this plant: ",plant_hours," hours")
+            # if (int(now.strftime("%H"))) >= plant_dict[plant_hours][0] and (int(now.strftime("%H"))) <= plant_dict[plant_hours][1]:
+            #    state = 0
+            # else:
+            #    state = 1
             if (int(now.strftime("%H"))) == (plant_dict[plant_hours][0]) and state == 0:
-                print("current minute greater than {}, turn clockwise (open solar shield)".format(plant_dict[plant_hours][0]))
+                print("It is {} o'clock, turn clockwise (open solar shield)".format(plant_dict[plant_hours][0]))
                 try:
                     stepper.backward(delay / 1000, int(steps))
                     state = 1
                 except:
                     print("Failed to turn solar gear")
             elif (int(now.strftime("%H"))) == (plant_dict[plant_hours][1]) and state == 1:
-                print("current minute greater than {}, turn counterclockwise (close solar shield)".format(plant_dict[plant_hours][1]))
+                print("It is {} o'clock, turn counterclockwise (close solar shield)".format(plant_dict[plant_hours][1]))
                 try:
                     stepper.forward(delay / 1000, int(steps))
                     state = 0

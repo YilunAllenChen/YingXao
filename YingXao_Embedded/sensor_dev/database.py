@@ -6,10 +6,10 @@ import random
 # import SI1145.SI1145 as light_sensor
 plantType = 'lily' #change to customer's choice
 
-firebase = firebase.FirebaseApplication('https://automated-gardener-default-rtdb.firebaseio.com/', None)
+fireBase = firebase.FirebaseApplication('https://automated-gardener-default-rtdb.firebaseio.com/', None)
 # plantInfo.put('/plants-info-5b86b-default-rtdb/plantDatabase/-MUZV5yiF3xw9A9wqEMl/lily', 'sunlightTime_s', 3)
 # plantInfo.put('/plants-info-5b86b-default-rtdb/plantDatabase/-MUZV5yiF3xw9A9wqEMl/tulip', 'sunlightTime_s', 8)
-result = firebase.get('/automated-gardener-default-rtdb/plantInfo', '')
+result = fireBase.get('/automated-gardener-default-rtdb/plantInfo', '')
 
 #dataType can be 'humidity_s', 'moisture_s', 'sunlight_s', 'temperatureC_s', 'temperatureF_s', 'sunlightTime_s'
 def get_data(dataType):
@@ -28,10 +28,10 @@ humidity_required = get_data('humidity_s')             #sample test
 # print('temperatureC_required: ',temperatureC_required)
 # print('temperatureF_required: ',temperatureF_required)
 
-firebase = firebase.FirebaseApplication('https://automated-gardener-default-rtdb.firebaseio.com/', None)
+# firebase = firebase.FirebaseApplication('https://automated-gardener-default-rtdb.firebaseio.com/', None)
 
 def upload_data(dataTuple):
-	firebase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', dataTuple[0], dataTuple[1])
+    fireBase.put('/automated-gardener-default-rtdb/realtime-plant-value/user1', dataTuple[0], dataTuple[1])
 
 if __name__ == "__main__":
     while True:
